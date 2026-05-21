@@ -1,0 +1,247 @@
+<!-- ============================================================== -->
+<!-- ARQUIVO HTML + CSS + Chamadas para JavaScript (carrinho)       -->
+<!-- ============================================================== -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Pizzaria Fatec</title>
+
+<style>
+/* ========================================================= */
+/* RESET E CONFIGURAÇÕES INICIAIS                             */
+/* ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f8f9fa;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+/* ========================================================= */
+/* CABEÇALHO                                                  */
+/* ========================================================= */
+.cabecalho-principal {
+    background: #d32f2f;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* ========================================================= */
+/* CONTEÚDO PRINCIPAL                                         */
+/* ========================================================= */
+.conteudo-principal {
+    padding: 30px;
+    text-align: center;
+}
+
+.grade-de-pizzas {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.cartao-pizza {
+    background: white;
+    width: 260px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1);
+}
+
+.botao-pedir {
+    display: inline-block;
+    background: #ff9800;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+/* ========================================================= */
+/* CARRINHO (NOVO BLOCO PARA JAVASCRIPT)                      */
+/* ========================================================= */
+
+#carrinho-container {
+    background: #ffffff;
+    margin: 30px auto;
+    padding: 20px;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1);
+}
+
+/* Título do carrinho */
+#carrinho-container h2 {
+    margin-bottom: 15px;
+}
+
+/* Lista de itens */
+#lista-carrinho {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.item-carrinho {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    /* Alinhando o texto e o botão em extremidades opostas */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilização do botão de remover item */
+.botao-remover {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.botao-remover:hover {
+    background: #b71c1c;
+}
+
+/* Total */
+#total {
+    font-weight: bold;
+    color: #2e7d32;
+    font-size: 1.2rem;
+}
+
+/* ========================================================= */
+/* RODAPÉ                                                     */
+/* ========================================================= */
+.rodape-principal {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================================================= -->
+<!-- CABEÇALHO                                                 -->
+<!-- ========================================================= -->
+<header class="cabecalho-principal">
+    <h2>🍕 Pizzaria Fatec</h2>
+    <nav class="menu">
+        <ul>
+            <li><a href="#cardapio">Cardápio</a></li>
+            <li><a href="#carrinho-container">Carrinho</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ========================================================= -->
+<!-- CONTEÚDO PRINCIPAL                                        -->
+<!-- ========================================================= -->
+<main class="conteudo-principal">
+
+    <h1>Escolha sua Pizza</h1>
+
+    <div class="grade-de-pizzas">
+
+        <!-- Cada pizza envia dados ao JS por meio de data-* -->
+        <article class="cartao-pizza">
+            <img src="https://placehold.co/200x200?text=Calabresa">
+            <h2>Calabresa</h2>
+            <p>Calabresa + Cebola</p>
+            <p>R$ 45,00</p>
+            <a href="#" class="botao-pedir" 
+                data-sabor="Calabresa"   
+                data-preco="45">		
+                Pedir Agora
+            </a>
+			<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑      todos os botões de "Pedir Agora" são selecioandos em: "const botoes = document.querySelectorAll(".botao-pedir");" -->
+			<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑      "data-sabor" envia o sabor da pizza para o carrinho -->
+			<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑      "data-preco" envia o preço da pizza para o carrinho -->
+        </article>
+
+        <article class="cartao-pizza">
+            <img src="https://placehold.co/200x200?text=Margherita">
+            <h2>Margherita</h2>
+            <p>Mussarela + Tomate + Manjericão</p>
+            <p>R$ 50,00</p>
+            <a href="#" class="botao-pedir"
+                data-sabor="Margherita"
+                data-preco="50">
+                Pedir Agora
+            </a>
+        </article>
+
+        <article class="cartao-pizza">
+            <img src="https://placehold.co/200x200?text=Frango">
+            <h2>Frango c/ Catupiry</h2>
+            <p>Frango + Catupiry Original</p>
+            <p>R$ 55,00</p>
+            <a href="#" class="botao-pedir"
+                data-sabor="Frango com Catupiry"
+                data-preco="55">
+                Pedir Agora
+            </a>
+        </article>
+
+    </div>
+
+</main>
+
+<!-- ========================================================= -->
+<!-- CARRINHO DINÂMICO (MANIPULADO PELO JS)                    -->
+<!-- ========================================================= -->
+<div id="carrinho-container">
+    <h2>Carrinho</h2>
+    <ul id="lista-carrinho"></ul> <!-- seleção em "const listaCarrinho = document.getElementById("lista-carrinho");" -->
+    <p id="total">Total: R$ 0,00</p> <!-- seleção em "const totalCarrinho = document.getElementById("total");" -->
+</div>
+
+<!-- IMPORTANTE: ligar o arquivo de lógica JS -->
+<script src="app.js"></script>
+
+<!-- ========================================================= -->
+<!-- RODAPÉ                                                     -->
+<!-- ========================================================= -->
+<footer class="rodape-principal">
+    <p>Pizzaria Fatec – 2026</p>
+</footer>
+
+</body>
+</html>

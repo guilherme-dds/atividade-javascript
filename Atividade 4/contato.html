@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Contato - Pizzaria Fatec</title>
+
+<style>
+/* Reutilizando as configurações iniciais da Pizzaria */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #f8f9fa; font-family: Arial, Helvetica, sans-serif; color: #333; }
+.cabecalho-principal { background: #d32f2f; padding: 20px; display: flex; justify-content: space-between; color: white; }
+.menu ul { display: flex; list-style: none; gap: 20px; }
+.menu a { text-decoration: none; color: white; font-weight: bold; }
+.rodape-principal { position: fixed; bottom: 0; width: 100%; background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+
+/* Estilos específicos para o formulário de contato */
+.container-contato {
+    background: #ffffff;
+    margin: 40px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1);
+}
+.container-contato h1 { margin-bottom: 25px; text-align: center; color: #333; }
+
+.grupo-form { margin-bottom: 20px; }
+.grupo-form label { display: block; font-weight: bold; margin-bottom: 8px; }
+.grupo-form input, .grupo-form textarea {
+    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: inherit; font-size: 1rem; transition: border-color 0.2s;
+}
+.grupo-form input:focus, .grupo-form textarea:focus { border-color: #d32f2f; outline: none; }
+
+/* Estilos de Erro (UX) */
+.grupo-form input.erro, .grupo-form textarea.erro { border-color: #d32f2f; background-color: #fff3f3; }
+.mensagem-erro { color: #d32f2f; font-size: 0.85rem; margin-top: 5px; display: none; font-weight: bold; }
+
+.botao-enviar { background: #ff9800; color: black; padding: 12px 20px; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; width: 100%; cursor: pointer; transition: background 0.2s; }
+.botao-enviar:hover { background: #e68a00; }
+
+/* Estilo de Sucesso */
+.mensagem-sucesso { display: none; background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; text-align: center; margin-top: 20px; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<header class="cabecalho-principal">
+    <h2>🍕 Pizzaria Fatec</h2>
+    <nav class="menu">
+        <ul>
+            <li><a href="pizzaria.html">Cardápio & Carrinho</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="conteudo-principal">
+    <div class="container-contato">
+        <h1>Fale Conosco</h1>
+        <!-- Adicionado novalidate para remover validação padrão do navegador -->
+        <form id="form-contato" novalidate>
+            <div class="grupo-form">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
+                <div id="erro-nome" class="mensagem-erro">O campo nome não pode estar vazio.</div>
+            </div>
+            
+            <div class="grupo-form">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@dominio.com">
+                <div id="erro-email" class="mensagem-erro">Insira um endereço de e-mail válido.</div>
+            </div>
+            
+            <div class="grupo-form">
+                <label for="mensagem">Mensagem *</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Sua mensagem (mínimo de 10 caracteres)"></textarea>
+                <div id="erro-mensagem" class="mensagem-erro">A mensagem deve conter pelo menos 10 caracteres.</div>
+            </div>
+            
+            <button type="submit" class="botao-enviar">Enviar Mensagem</button>
+        </form>
+        
+        <div id="mensagem-sucesso" class="mensagem-sucesso">
+            Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.
+        </div>
+    </div>
+</main>
+
+<script src="contato.js"></script>
+</body>
+</html>
